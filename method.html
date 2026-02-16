@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Methodology | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+    <main class="page-section visible">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+            
+            <header style="margin-bottom: 60px; border-left: 5px solid var(--neon-green); padding-left: 20px;">
+                <h1 class="font-kanit" style="font-size: 2.8rem; margin: 0;">
+                    <span class="neon-green">METHODOLOGY</span>
+                </h1>
+            </header>
+
+            <div class="method-step-card font-kanit">
+                <h3 class="neon-green" style="margin-bottom: 15px;">Data Collection</h3>
+                <p style="opacity: 0.8;">รวบรวมคลังภาพสินค้าเสียและพิกัดร้านค้า SMEs เพื่อสอนระบบ AI</p>
+                <div class="tool-tag" onclick="toggleTag(this, 'm1')">Image Dataset ▾</div>
+                <div class="tool-tag" onclick="toggleTag(this, 'm2')">Location Data ▾</div>
+                <div id="m1" class="tag-info font-kanit">รวบรวมภาพถ่ายความเสียหายของสินค้าอิเล็กทรอนิกส์ เช่น รอยแตก หรือรอยบุบ กว่า 2,000 รายการ</div>
+                <div id="m2" class="tag-info font-kanit">ฐานข้อมูลตำแหน่ง GPS จำลองในพื้นที่กรุงเทพฯ เพื่อทดสอบความแม่นยำของอัลกอริทึม</div>
+            </div>
+
+            <div class="method-step-card font-kanit">
+                <h3 class="neon-green" style="margin-bottom: 15px;">AI Inspection</h3>
+                <p style="opacity: 0.8;">การสร้างระบบคัดแยกสภาพสินค้าอัตโนมัติด้วย Computer Vision</p>
+                <div class="tool-tag" onclick="toggleTag(this, 'm3')">Python ▾</div>
+                <div class="tool-tag" onclick="toggleTag(this, 'm4')">OpenCV ▾</div>
+                <div id="m3" class="tag-info font-kanit">ใช้สำหรับการเขียนโครงสร้างโมเดล Deep Learning และการประมวลผลหลังบ้าน</div>
+                <div id="m4" class="tag-info font-kanit">เทคโนโลยีที่ช่วยในการประมวลผลภาพ (Pre-processing) เพื่อเน้นจุดบกพร่องให้ AI ตรวจสอบง่ายขึ้น</div>
+            </div>
+
+            <div class="method-step-card font-kanit no-arrow">
+                <h3 class="neon-green" style="margin-bottom: 15px;">Route Optimization Engine</h3>
+                <p style="opacity: 0.8;">ระบบคำนวณเส้นทางรับคืนสินค้าแบบฉลาด เพื่อลดต้นทุนและเวลาเดินทาง</p>
+                <div class="tool-tag" onclick="toggleTag(this, 'm5')">Dynamic Routing ▾</div>
+                <div class="tool-tag" onclick="toggleTag(this, 'm6')">API Integration ▾</div>
+                <div id="m5" class="tag-info font-kanit">อัลกอริทึมการจัดการเส้นทางที่ปรับเปลี่ยนตามสภาพจราจรจริงแบบ Real-time</div>
+                <div id="m6" class="tag-info font-kanit">เชื่อมต่อกับ Google Maps API เพื่อดึงระยะทางและเวลาเดินทางที่แม่นยำที่สุด</div>
+            </div>
+
+            <div style="margin-top: 80px; display: flex; gap: 20px; justify-content: center; align-items: center;">
+                <a href="literature.html" class="btn-back-topics">← RESEARCH</a>
+                <a href="result.html" class="btn-next-research">RESULTS →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleTag(element, infoId) {
+            const targetInfo = document.getElementById(infoId);
+            const isActive = targetInfo.classList.contains('active');
+            const card = element.closest('.method-step-card');
+            card.querySelectorAll('.tag-info').forEach(info => info.classList.remove('active'));
+            if (!isActive) targetInfo.classList.add('active');
+        }
+    </script>
+</body>
+</html>

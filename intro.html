@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>บทที่ 1 บทนำ | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* สไตล์เพิ่มเติมเพื่อให้วิดีอดูเข้ากับธีม */
+        .video-container {
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid rgba(57, 255, 20, 0.3); /* ขอบสีเขียวนีออนจางๆ */
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.1); /* แสงฟุ้งรอบวิดีโอ */
+            background: #000;
+        }
+        video {
+            width: 100%;
+            display: block;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+
+    <main class="page-section visible">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        
+        <header style="margin-bottom: 50px;">
+            <h1 class="font-kanit" style="font-size: 3rem; line-height: 1.2;">
+                <span class="neon-green">ความสำคัญและที่มาของปัญหา</span>
+            </h1>
+        </header>
+
+        <div style="display: flex; gap: 50px; align-items: flex-start; flex-wrap: wrap;">
+            
+            <div style="flex: 1.2; min-width: 400px;">
+                <p class="font-kanit" style="color: var(--text-color); line-height: 2; font-size: 1.15rem; opacity: 0.9;">
+                    ในยุคที่การค้าอิเล็กทรอนิกส์ (E-commerce) เติบโตอย่างรวดเร็ว การจัดการโลจิสติกส์ย้อนกลับ (Reverse Logistics) กลายเป็นปัจจัยชี้ขาดความสำเร็จของธุรกิจ เนื่องจากมีต้นทุนการดำเนินงานสูงกว่าปกติถึง 2-3 เท่า ปัญหาหลักคือความไม่แน่นอนของสภาพสินค้าที่ส่งกลับมา ทำให้การคัดแยกด้วยแรงงานมนุษย์เกิดข้อผิดพลาดและล่าช้า
+                    <br><br>
+                    การนำเทคโนโลยีปัญญาประดิษฐ์ (AI) เข้ามาใช้จึงเป็นกุญแจสำคัญในการวิเคราะห์ข้อมูลขนาดใหญ่และพยากรณ์แนวโน้มได้อย่างแม่นยำ ซึ่งสอดคล้องกับรายงานของ McKinsey (2024) ที่ระบุว่าการนำ AI มาใช้สามารถลดต้นทุนโลจิสติกส์ได้ร้อยละ 15-20 และช่วยสนับสนุนความยั่งยืนโดยการลดระยะทางวิ่งรถเปล่าได้อย่างมีประสิทธิภาพ
+                </p>
+
+                <div style="margin-top: 80px; display: flex; gap: 20px; justify-content: center; align-items: center;">
+    <a href="topic.html" class="btn-back-topics">
+        BACK TO TOPICS
+    </a>
+    
+    <a href="literature.html" class="btn-next-research">
+        RESEARCH →
+    </a>
+</div>
+            </div>
+
+            <div style="flex: 0.8; min-width: 350px;">
+    <div class="video-container">
+        <video controls playsinline preload="metadata">
+            <source src="Overview.mp4" type="video/mp4">
+            เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+        </video>
+    </div>
+    <p style="color: #666; font-size: 0.9rem; margin-top: 10px; text-align: center;" class="font-kanit">
+        วิดีโอภาพรวม (Overview)
+    </p>
+</div> 
+
+        </div>
+    </div>
+</main>
+    <script src="script.js"></script>
+</body>
+</html>

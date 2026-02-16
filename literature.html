@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Literature Review | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* สไตล์เพิ่มเติมสำหรับการแบ่งซ้าย-ขวาภายใน Card */
+        .res-card-content-wrapper {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
+        }
+        .res-card-image {
+            flex: 0 0 40%; /* กำหนดความกว้างรูป 40% */
+            max-width: 300px;
+        }
+        .res-card-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+        }
+        .res-card-text {
+            flex: 1; /* เนื้อหาที่เหลืออยู่ทางขวา */
+        }
+        /* ปรับแต่งให้รองรับมือถือ */
+        @media (max-width: 768px) {
+            .res-card-content-wrapper {
+                flex-direction: column;
+            }
+            .res-card-image {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+   <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+
+    <main class="page-section visible">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+            
+            <header style="margin-bottom: 60px; border-left: 5px solid var(--neon-green); padding-left: 20px;">
+                <h1 class="font-kanit" style="font-size: 2.5rem; margin: 0;">
+                    <span class="white-text">ทบทวนวรรณกรรมและงานวิจัย</span>
+                </h1>
+                <p class="font-kanit" style="color: #64748b; margin-top: 15px;">การวิเคราะห์ AI ในกระบวนการ Reverse Logistics (2561-2569)</p>
+            </header>
+
+            <section style="margin-bottom: 60px;">
+                <h2 class="font-kanit neon-green" style="margin-bottom: 30px;">แนวคิดพื้นฐาน</h2>
+                <div class="res-grid-container">
+                    
+                    <div class="res-tech-card font-kanit">
+                        <div class="res-card-header">
+                            <span class="res-scan-line"></span>
+                            <h4>CLOSED-LOOP SUPPLY CHAIN</h4>
+                        </div>
+                        <div class="res-card-content-wrapper">
+                            <div class="res-card-image">
+                                <img src="pic1.png" alt="Closed-loop Supply Chain Visualization">
+                            </div>
+                            <div class="res-card-text">
+                                <p>การบูรณาการ Forward และ Reverse Logistics เข้าด้วยกัน เพื่อหมุนเวียนทรัพยากรอย่างยั่งยืน โดยใช้ AI ช่วยตัดสินใจสถานะสินค้า (Dispositioning) ว่าควร Resale, Refurbish หรือ Recycle</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="res-tech-card font-kanit">
+                        <div class="res-card-header">
+                            <span class="res-scan-line"></span>
+                            <h4>COMPUTER VISION & AI</h4>
+                        </div>
+                        <div class="res-card-content-wrapper">
+                            <div class="res-card-image">
+                                <img src="pic2.png" alt="Computer Vision & AI Visualization">
+                            </div>
+                            <div class="res-card-text">
+                                <p>การใช้ Machine Learning คํานวณเส้นทางแบบพลวัต (Dynamic Routing) และใช้ Computer Vision ตรวจสอบความเสียหายสินค้าอัตโนมัติ เพื่อมาตรฐานที่สูงกว่าแรงงานคน</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="margin-bottom: 60px;">
+                <h2 class="font-kanit neon-green" style="margin-bottom: 30px;">งานวิจัยที่เกี่ยวข้อง</h2>
+                <div class="res-terminal">
+                    <div class="res-terminal-header">
+                        <div class="res-terminal-dots"><span></span> <span></span> <span></span></div>
+                    </div>
+                    <div class="res-terminal-body">
+                        <table class="res-tech-table font-kanit">
+                            <thead>
+                                <tr>
+                                    <th>ผู้วิจัย / องค์กร</th>
+                                    <th>จุดเด่น / เทคโนโลยี</th>
+                                    <th>ผลลัพธ์ / จุดอ่อน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Brown et al. (2024)</td>
+                                    <td>Dynamic Route Optimization</td>
+                                    <td><span class="neon-green">+</span> ลดวิ่งรถเปล่า 15-25% <br> <span style="color: #ff4444;">-</span> ทดสอบเฉพาะพื้นที่ดิจิทัลหนาแน่น</td>
+                                </tr>
+                                <tr>
+                                    <td>Lee & Park (2024)</td>
+                                    <td>Deep Learning (Electronics)</td>
+                                    <td><span class="neon-green">+</span> แม่นยำ 97% แยกประเภทแผลได้ <br> <span style="color: #ff4444;">-</span> ต้องใช้ Dataset ขนาดมหาศาล</td>
+                                </tr>
+                                <tr>
+                                    <td>Amazon (2023)</td>
+                                    <td>AI Photo Inspection</td>
+                                    <td><span class="neon-green">+</span> คืนเงินทันที ลดค่าขนส่งขยะ <br> <span style="color: #ff4444;">-</span> เสี่ยงลูกค้าส่งภาพไม่ตรงปก</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="res-terminal font-kanit">
+                <div class="res-terminal-header" style="background: rgba(57, 255, 20, 0.15);">
+                    <div class="res-terminal-title" style="color: var(--neon-green);">ช่องว่างของงานวิจัย (Research Gap)</div>
+                </div>
+                <div class="res-terminal-body" style="background: linear-gradient(145deg, rgba(10, 26, 5, 0.9), rgba(0,0,0,0.95)); padding: 40px;">
+                    <p style="line-height: 2; opacity: 0.9; font-size: 1.1rem; margin: 0; color: #fff !important;">
+                        งานวิจัยส่วนใหญ่เน้นบริษัทข้ามชาติและโครงสร้างพื้นฐานในประเทศพัฒนาแล้ว 
+                        <strong class="neon-green">REVERSECORE</strong> จึงมุ่งเน้นการศึกษาในบริบทของ 
+                        <strong>ประเทศไทยและกลุ่ม SMEs</strong> ที่มีข้อจำกัดด้านงบประมาณและฐานข้อมูล 
+                        เพื่อสร้างแนวทางที่นำไปใช้ได้จริงในตลาดไทย
+                    </p>
+                </div>
+            </section>
+
+            <div style="margin-top: 80px; display: flex; gap: 20px; justify-content: center; align-items: center;">
+                <a href="intro.html" class="res-btn-back">← OVERVIEW</a>
+                <a href="method.html" class="btn-next-research">METHODOLOGY →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

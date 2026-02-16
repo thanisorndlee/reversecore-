@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>REVERSECORE | AI Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="apple-mobile-web-app-title" content="REVERSECORE">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon.png">
+    <style>
+        /* สไตล์ถอดจากรูปเป๊ะๆ */
+        .navbar { border-bottom: 2px solid #39ff14; padding: 15px 5%; }
+        
+        /* สไตล์ Slider Container ตามรูป */
+        .hero-visual .slider-container {
+            border: 2px solid #39ff14;
+            border-radius: 35px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.2);
+        }
+
+        /* ส่วน Overlay ข้อความบนสไลด์ */
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 50px 30px 30px;
+            text-align: left;
+        }
+
+        .slide-overlay h3 { color: #39ff14; font-size: 1.4rem; margin-bottom: 10px; text-transform: uppercase; }
+        .slide-overlay p { font-size: 0.95rem; line-height: 1.5; color: #fff; opacity: 0.9; }
+
+        /* จุด Dots ตามรูป */
+        .dot-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 20;
+        }
+        .dot {
+            height: 8px; width: 8px; margin: 0 5px;
+            background-color: #555; border-radius: 50%;
+            display: inline-block; cursor: pointer; transition: 0.3s;
+        }
+        .dot.active { background-color: #39ff14; box-shadow: 0 0 10px #39ff14; }
+
+        /* ปุ่มชมพูเรืองแสง */
+        .btn-pink-glow {
+            background: #ff2d55;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 0 25px rgba(255, 45, 85, 0.5);
+            display: inline-block;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+        .btn-pink-glow:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(255, 45, 85, 0.7); }
+    </style>
+</head>
+
+<body style="background-color: #0b1016; color: white; font-family: 'Kanit', sans-serif;">
+    <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        <a href="tracking.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Tracking</a>
+        <a href="dashboard.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Dashboard</a>
+        
+        <button id="mode-toggle" class="cta-btn">🌙</button>
+<script src="script.js"></script>
+    </div>
+</nav>
+
+    <div class="top-info-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 30px 10%;">
+        <div class="weather">🌍 Bangkok: <span style="color: #39ff14;">29°C</span> | สภาพอากาศปกติสำหรับการขนส่ง</div>
+        <div class="search" style="position: relative;">
+    <input type="text" id="innovativeSearch" placeholder="ค้นหาข้อมูลนวัตกรรม..." 
+           onkeyup="if(event.key === 'Enter') searchInno()"
+           style="background: #1a212b; border: 1px solid #333; color: white; padding: 10px 20px; border-radius: 8px; width: 250px;">
+    <span onclick="searchInno()" style="position: absolute; right: 15px; top: 10px; cursor: pointer;">🔍</span>
+</div>
+    </div>
+
+    <div class="hero-container" style="display: flex; align-items: center; gap: 80px; padding: 20px 10%;">
+        <div class="hero-text" style="flex: 1;">
+            <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px;">
+                <span style="color: #39ff14;">นวัตกรรม AI ใน</span><br>
+                Reverse Logistics
+            </h1>
+            <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 20px;">
+                ยินดีต้อนรับสู่แพลตฟอร์มการจัดการโลจิสติกส์ย้อนกลับยุคใหม่ ที่ใช้พลังของ AI เพื่อลดต้นทุนและเพิ่มความยั่งยืน
+            </p>
+            <p style="font-size: 0.95rem; opacity: 0.7; line-height: 1.6;">
+                <strong>วัตถุประสงค์หลัก:</strong> ศึกษาการใช้ Machine Learning เพื่อเพิ่มประสิทธิภาพการจัดเส้นทางและคัดแยกสภาพสินค้าคืน
+            </p>
+            <a href="topic.html" class="btn-pink-glow">เริ่มสำรวจหัวข้อ <span>→</span></a>
+        </div>
+
+        <div class="hero-visual" style="flex: 1.2;">
+            <div class="slider-container">
+                <div class="slide fade">
+                    <img src="slide1.png" alt="AI Logistics" style="width: 100%;">
+                    <div class="slide-overlay">
+                        <h3>AI Revolutionizing Reverse Logistics</h3>
+                        <p>นวัตกรรมปัญญาประดิษฐ์เพื่อการจัดการสินค้าคืนอย่างยั่งยืนและมีประสิทธิภาพสูงสุด</p>
+                    </div>
+                </div>
+                <div class="slide fade">
+                    <img src="slide2.png" alt="Cost Issue" style="width: 100%;">
+                    <div class="slide-overlay">
+                        <h3>High Return Costs: The Hidden Burden</h3>
+                        <p>เจาะลึกความซับซ้อนและต้นทุนแฝงที่ทำให้การจัดการสินค้าคืนมีราคาสูงกว่าปกติถึง 3 เท่า</p>
+                    </div>
+                </div>
+                <div class="slide fade">
+                    <img src="slide3.png" alt="Data Analytics" style="width: 100%;">
+                    <div class="slide-overlay">
+                        <h3>Data-Driven Decisions with AI Analytics</h3>
+                        <p>AI วิเคราะห์ข้อมูลเชิงลึกเพื่อคาดการณ์ปริมาณสินค้าคืนและแนะนำเส้นทางจัดการ</p>
+                    </div>
+                </div>
+                <div class="slide fade">
+                    <img src="slide4.png" alt="Automated Sorting" style="width: 100%;">
+                    <div class="slide-overlay">
+                        <h3>Automated Sorting & Quality Checks</h3>
+                        <p>ระบบ AI คัดแยกและประเมินสภาพสินค้าคืนโดยอัตโนมัติ ลดข้อผิดพลาดและเพิ่มความเร็ว</p>
+                    </div>
+                </div>
+                <div class="slide fade">
+                    <img src="slide5.png" alt="Sustainable Future" style="width: 100%;">
+                    <div class="slide-overlay">
+                        <h3>Sustainable Future with AI Logistics</h3>
+                        <p>AI ช่วยลดของเสีย เพิ่มมูลค่าสินค้า และสร้างห่วงโซ่อุปทานย้อนกลับที่เป็นมิตรต่อสิ่งแวดล้อม</p>
+                    </div>
+                </div>
+
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+<main class="page-section visible font-kanit" style="padding-top: 20px;">
+        <div class="glass-abstract" style="max-width: 1000px; margin: 0 auto; padding: 40px; border-radius: 20px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(57, 255, 20, 0.1); position: relative;">
+            <h3 style="color: #39FF14; margin-bottom: 20px; letter-spacing: 2px;">ABSTRACT</h3>
+            <p style="color: #fff; line-height: 1.8; font-size: 1.05rem; opacity: 0.9; font-style: italic;">
+                This project, "REVERSECORE," explores the implementation of AI-driven Reverse Logistics systems, 
+                specifically focusing on sustainable packaging return technologies. By integrating Smart Reverse Vending Machines (RVM) 
+                with digital membership platforms, the system aims to optimize the collection process and enhance consumer participation. 
+                Through the application of Agentic AI and Metaverse-ready supply chain simulations, the study demonstrates 
+                significant potential in reducing operational costs and supporting circular economy goals in the retail sector, 
+                providing a visionary framework for future green logistics.
+            </p>
+        </div>
+    </main>
+
+    <section class="page-section visible font-kanit">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+            <h2 class="neon-green" style="margin-bottom: 40px;">ผู้จัดทำโครงงาน</h2>
+            <div class="glass" style="display: flex; align-items: center; gap: 40px; text-align: left; padding: 40px;">
+                <div style="flex: 0.8;">
+                    <div style="width: 200px; height: 250px; background: #1a212b; border: 2px solid #39FF14; border-radius: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                         <img src="Profile.JPG" alt="ผู้จัดทำ" style="width: 100%; height: 100%; object-fit: cover;">
+                         </div>
+                </div>
+                <div style="flex: 1.2;">
+                    <h3 style="color: #39FF14; margin-bottom: 10px;">นางสาวธนิสร วสุนทรากาญจน์</h3>
+                    <p style="margin-bottom: 8px;"><strong>รหัสนักศึกษา:</strong> 6611011340024</p>
+                    <p style="margin-bottom: 8px;"><strong>คณะ:</strong> วิทยาศาสตร์และเทคโนโลยี</p>
+                    <p style="margin-bottom: 8px;"><strong>สาขาวิชา:</strong> วิทยาการคอมพิวเตอร์</p>
+                    <p style="margin-bottom: 20px;"><strong>มหาวิทยาลัย:</strong> มหาวิทยาลัยสวนดุสิต</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="mailto:your-email@mail.com" class="cta-btn" style="text-decoration: none; font-size: 0.9rem;">CONTACT EMAIL</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function currentSlide(n) { showSlides(slideIndex = n); }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+        }
+        // เปลี่ยนสไลด์อัตโนมัติ
+        setInterval(() => { showSlides(slideIndex += 1); }, 5000);
+    </script>
+</body>
+</html>

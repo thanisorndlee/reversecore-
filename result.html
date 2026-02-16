@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Results | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .stat-card {
+            background: rgba(57, 255, 20, 0.03);
+            border: 1px solid rgba(57, 255, 20, 0.1);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            overflow: hidden; /* กันรูปล้น */
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stat-card:hover {
+            background: rgba(57, 255, 20, 0.06);
+            border-color: #39ff14;
+        }
+        
+        /* สไตล์รูปภาพภายในการ์ด */
+        .card-img {
+            display: none; /* ซ่อนไว้ตอนแรก */
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid rgba(57, 255, 20, 0.3);
+        }
+
+        /* เมื่อมีการเปิดดู */
+        .stat-card.active .card-img {
+            display: block;
+        }
+        .stat-card.active .stat-number {
+            font-size: 2rem; /* ย่อตัวเลขลงเมื่อรูปมา */
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #39ff14;
+            display: block;
+            margin-bottom: 10px;
+            transition: 0.3s;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+        .stat-label {
+            color: var(--text-color) !important;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .summary-box {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.2));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            line-height: 2;
+        }
+        .neon-green { color: #39ff14; }
+    </style>
+</head>
+<body>
+   <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html">Home</a>
+        <a href="topic.html">Topic</a>
+        <a href="innovations.html">Innovations</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="future.html">Future</a>
+        <a href="references.html">References</a>
+        <button id="mode-toggle" class="cta-btn" style="background: transparent !important; border: 1px solid var(--neon-green) !important; padding: 8px 15px; margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+
+    <main class="page-section visible">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 40px 20px;">
+            <header style="margin-bottom: 60px; border-left: 5px solid #39ff14; padding-left: 20px;">
+                <h1 class="font-kanit" style="font-size: 2.8rem; margin: 0;">
+                    <span class="neon-green">RESULTS</span>
+                </h1>
+                <p class="font-kanit" style="color: #888; margin-top: 10px;">การวัดประสิทธิภาพและผลสัมฤทธิ์ของระบบ</p>
+            </header>
+
+            <div class="stat-grid font-kanit">
+                <div class="stat-card" onclick="toggleCard(this)">
+                    <span class="stat-number">97.4%</span>
+                    <span class="stat-label">AI Accuracy</span>
+                    <img src="graph1.png" class="card-img" alt="Accuracy Graph">
+                </div>
+
+                <div class="stat-card" onclick="toggleCard(this)">
+                    <span class="stat-number">-22%</span>
+                    <span class="stat-label">Route Cost Reduction</span>
+                    <img src="graph2.png" class="card-img" alt="Cost Graph">
+                </div>
+
+                <div class="stat-card" onclick="toggleCard(this)">
+                    <span class="stat-number">3.5x</span>
+                    <span class="stat-label">Processing Speedup</span>
+                    <img src="graph3.png" class="card-img" alt="Speed Graph">
+                </div>
+            </div>
+
+            <section class="summary-box font-kanit">
+                <h2 class="neon-green" style="margin-top: 0; margin-bottom: 25px;">บทสรุปการดำเนินงาน</h2>
+                <p style="opacity: 0.9;">จากการทดสอบและวิเคราะห์ประสิทธิภาพของระบบ REVERSECORE พบว่าการบูรณาการเทคโนโลยี AI เข้ากับระบบลอจิสติกส์ย้อนกลับสามารถสร้างความเปลี่ยนแปลงได้อย่างมีนัยสำคัญใน 3 มิติหลัก:
+
+ระบบสามารถทำความ แม่นยำในการคัดแยกได้สูงถึง 97.4% ซึ่งก้าวข้ามขีดจำกัดและข้อผิดพลาดที่เกิดจากดุลพินิจของมนุษย์ได้อย่างสมบูรณ์ ขณะเดียวกัน การจัดการเส้นทางแบบพลวัตช่วยลดต้นทุนการดำเนินงานลงได้ถึง 22% และด้วยประสิทธิภาพการ ประมวลผลที่รวดเร็วขึ้นถึง 3.5 เท่า ส่งผลให้ REVERSECORE เป็นโซลูชันที่ช่วยให้ภาคธุรกิจสามารถบริหารจัดการสินค้าคืนได้อย่าง "แม่นยำ ประหยัด และรวดเร็ว" อย่างเป็นรูปธรรม                    
+                </p>
+            </section>
+
+           <div style="margin-top: 80px; display: flex; gap: 20px; justify-content: center; align-items: center;">
+                <a href="topic.html" class="btn-back-topics">BACK TO TOPICS</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleCard(card) {
+            // สลับคลาส active เพื่อโชว์/ซ่อนรูปภาพ
+            card.classList.toggle('active');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

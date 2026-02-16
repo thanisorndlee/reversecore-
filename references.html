@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>References | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .ref-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .ref-card:hover {
+            border-color: #39FF14;
+            transform: translateY(-5px);
+            background: rgba(57, 255, 20, 0.05);
+        }
+
+        .ref-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #39FF14;
+            color: #000;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .ref-card h4 { color: #fff; margin-bottom: 10px; font-size: 1.2rem; }
+        .ref-card p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6; }
+        
+        /* สไตล์สำหรับรายชื่อ APA */
+        .apa-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .apa-list li {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            line-height: 2;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            text-indent: -20px; /* ทำ Hanging Indent แบบ APA */
+        }
+        .apa-list i { font-style: italic; }
+
+        .ref-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #39FF14;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border-bottom: 1px solid transparent;
+        }
+        .ref-link:hover { border-bottom: 1px solid #39FF14; }
+    </style>
+</head>
+<body>
+   <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+
+    <main class="page-section visible font-kanit" style="max-width: 1200px; margin: 0 auto; padding: 60px 20px;">
+        <h1 class="neon-green" style="font-size: 2.5rem; text-align: center;">บรรณานุกรมและแหล่งอ้างอิง</h1>
+        <p style="text-align: center; opacity: 0.8; margin-top: 10px;">รายการแหล่งข้อมูลทั้งหมดที่ใช้ในการจัดทำโครงงานระบบโลจิสติกส์ย้อนกลับ</p>
+
+        <div class="ref-grid">
+            <div class="ref-card" style="grid-column: 1 / -1;"> <span class="ref-tag">Academic Sources (APA 7th Edition)</span>
+                <h4>เอกสารอ้างอิงทางวิชาการ</h4>
+                <ul class="apa-list">
+                    <li>Amazon. (2023). <i>Sustainability report 2023: Powering logistics with AI.</i> Amazon Sustainability.</li>
+                    <li>Brown, T. (2024). Optimization of reverse logistics routing using machine learning algorithms. <i>Journal of Supply Chain.</i></li>
+                    <li>CP Group. (2023). <i>Annual report 2023: Digital transformation in supply chain.</i></li>
+                    <li>McKinsey. (2024). <i>AI in the supply chain: Reducing costs.</i> McKinsey Operations.</li>
+                    <li>Robinson A. (2024). <i>Walmart global tech: AI for smarter returns.</i> Walmart News.</li>
+                    <li>Walmart. (2024). <i>Reverse Logistics: A Guide to Managing the Product Return Process.</i>Supply Chain 24/7.</li>
+                </ul>
+            </div>
+
+            <div class="ref-card">
+                <span class="ref-tag">AI Assistant</span>
+                <h4>Gemini 3 Flash (Paid Tier)</h4>
+                <p>ใช้สำหรับการสังเคราะห์ข้อมูลเชิงลึกด้านโลจิสติกส์, ช่วยในการเขียนโค้ด HTML/CSS/JS และสร้างภาพจำลองนวัตกรรม</p>
+                <span class="ref-link">Google AI Technology</span>
+            </div>
+
+            <div class="ref-card">
+                <span class="ref-tag">Case Study</span>
+                <h4>Tesco RVM System</h4>
+                <p>ศึกษาต้นแบบระบบเทคโนโลยีรับคืนบรรจุภัณฑ์ยั่งยืนที่เชื่อมโยงกับระบบสมาชิกดิจิทัล (Clubcard) และ Reverse Logistics</p>
+                <span class="ref-link">Corporate Sustainability Data</span>
+            </div>
+
+            <div class="ref-card">
+                <span class="ref-tag">Tech Stack</span>
+                <h4>Frontend Development</h4>
+                <p>การใช้ Google Fonts (Kanit), Lucide Icons และการออกแบบด้วยสไตล์ Glassmorphism Design</p>
+                <a href="https://fonts.google.com" class="ref-link">fonts.google.com</a>
+            </div>
+
+            <div class="ref-card">
+                <span class="ref-tag">Visuals</span>
+                <h4>AI Generated Media</h4>
+                <p>รูปภาพประกอบ Metaverse และ Agentic AI สร้างขึ้นโดยใช้โมเดล Generative AI เพื่อประกอบการนำเสนอ</p>
+                <span class="ref-link">System Generated Assets</span>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top: 50px; text-align: center;">
+            <p><strong>หมายเหตุ:</strong> ข้อมูลทั้งหมดถูกรวบรวมเพื่อวัตถุประสงค์ทางการศึกษาและการนำเสนอนวัตกรรมโลจิสติกส์ย้อนกลับ</p>
+            <a href="index.html" class="cta-btn" style="margin-top: 20px; display: inline-block; text-decoration: none; color: #000; background: #39FF14;">กลับสู่หน้าหลัก</a>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

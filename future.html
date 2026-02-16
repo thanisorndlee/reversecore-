@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Future & Recommendations | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ---สไตล์สไลด์ไอเดียอนาคต (ไอเดียใหม่ๆ)--- */
+        .future-slider {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            margin: 40px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(57, 255, 20, 0.3);
+        }
+
+        .future-slider .item {
+            width: 100%; height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        .future-slider .item.active { display: block; }
+        .future-slider .item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+
+        /* CONTENT สไตล์ที่คุณต้องการเป๊ะๆ */
+        .future-slider .item .content {
+            position: absolute;
+            top: 50%; 
+            left: 100px; 
+            width: 300px;
+            text-align: left;
+            color: #eee;
+            transform: translate(0, -50%); 
+            font-family: system-ui, 'Kanit', sans-serif; 
+            display: none; /* ซ่อนไว้ก่อน */
+        }
+
+        /* เอฟเฟกต์ตอนเด้ง "แฟ่ด" ออกมา */
+        .future-slider .item.active .content {
+            display: block;
+            animation: flashShow 0.8s ease-out forwards;
+        }
+
+        @keyframes flashShow {
+            from { opacity: 0; transform: translate(-50px, -50%); filter: blur(15px); }
+            to { opacity: 1; transform: translate(0, -50%); filter: blur(0); }
+        }
+
+        .content .title { font-size: 2.2rem; font-weight: 600; color: var(--neon-green); margin-bottom: 10px; }
+        .content .des { font-size: 1rem; line-height: 1.5; opacity: 0.8; }
+
+        /* ส่วนของ Form */
+        .feedback-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+        
+        .feedback-form input, .feedback-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            color: white;
+            border-radius: 8px;
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+</head>
+<body>
+   <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+    <main class="page-section visible font-kanit" style="max-width: 1100px; margin: 0 auto; padding: 40px 20px;">
+        <h1 class="neon-green" style="font-size: 2.5rem;">ข้อเสนอแนะและอนาคต</h1>
+        
+        <div class="glass" style="margin-top: 30px;">
+            <h3 style="color: var(--neon-green); margin-bottom: 15px;">สรุปข้อเสนอแนะ (Recommendations)</h3>
+            <p>จากการศึกษา พบว่าการลงทุนใน <strong>RFID</strong> และ <strong>AI คัดแยกสินค้า</strong> เป็นหัวใจสำคัญในการลดต้นทุนโลจิสติกส์ย้อนกลับ ผู้ประกอบการควรเริ่มต้นจากการทำ Digitalize ข้อมูลทั้งหมดเพื่อสร้างฐานข้อมูลสำหรับการวิเคราะห์ในอนาคต</p>
+        </div>
+
+        <div class="future-slider" id="futureSlider">
+            <div class="item active">
+                <img src="slide10.png" alt="Metaverse Supply Chain">
+                <div class="content">
+                    <div class="title">METAVERSE</div>
+                    <p class="des">ผสานโลกเสมือนจริงเพื่อให้ลูกค้าตรวจสอบสินค้าก่อนส่งคืน ลดความผิดพลาดในการคัดแยก</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="slide11.png" alt="Agentic AI">
+                <div class="content">
+                    <div class="title">AGENTIC AI</div>
+                    <p class="des">ระบบเอเจนท์อัจฉริยะที่ตัดสินใจจัดการเส้นทางการขนส่งคืนสินค้าได้เองแบบอัตโนมัติ 100%</p>
+                </div>
+            </div>
+        </div>
+       <div id="feedback-section" class="feedback-container" style="display: block !important; position: relative; z-index: 999; margin-top: 60px; background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 24px; border: 1px solid rgba(57, 255, 20, 0.2); backdrop-filter: blur(10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); transition: 0.5s;">
+    
+    <div id="form-content">
+        <h3 style="display: flex; align-items: center; gap: 10px; color: #39FF14 !important; margin-bottom: 30px; font-family: 'Kanit', sans-serif; font-weight: 500;">
+            <span style="font-size: 1.5rem;"></span> ส่งคำถามหรือข้อเสนอแนะ (User Feedback)
+        </h3>
+        
+        <form class="feedback-form" style="display: flex !important; flex-direction: column; gap: 20px;">
+            <input type="text" placeholder="ชื่อ-นามสกุล ของคุณ" id="userName"
+                   style="display: block !important; width: 100%; padding: 16px 20px; background: rgba(255, 255, 255, 0.05) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: 'Kanit';">
+            
+            <input type="email" placeholder="อีเมลติดต่อ" 
+                   style="display: block !important; width: 100%; padding: 16px 20px; background: rgba(255, 255, 255, 0.05) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: 'Kanit';">
+            
+            <textarea placeholder="พิมพ์ข้อความหรือคำถามเกี่ยวกับระบบโลจิสติกส์ที่นี่..." 
+                      style="display: block !important; width: 100%; padding: 16px 20px; height: 140px; background: rgba(255, 255, 255, 0.05) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: 'Kanit'; resize: none;"></textarea>
+            
+            <button type="button" 
+                    style="display: block !important; width: 100%; padding: 18px; background: linear-gradient(135deg, #39FF14 0%, #2ECC71 100%) !important; color: #000 !important; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; font-family: 'Kanit'; font-size: 1.1rem; transition: 0.4s;"
+                    onclick="handleFeedbackSubmit()">
+                ยืนยันการส่งข้อมูล
+            </button>
+        </form>
+    </div>
+
+    <div id="success-msg" style="display: none; text-align: center; padding: 40px 0;">
+        <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+        <h3 style="color: #39FF14; font-family: 'Kanit'; font-size: 1.8rem; margin-bottom: 10px;">ขอบคุณสำหรับข้อเสนอแนะ!</h3>
+        <p style="color: #fff; font-family: 'Kanit'; opacity: 0.8;">แบบคำตอบของคุณถูกส่งเข้าสู่ระบบเรียบร้อยแล้ว</p>
+        <button onclick="location.reload()" style="margin-top: 20px; background: transparent; color: #39FF14; border: 1px solid #39FF14; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Kanit';">ส่งข้อความใหม่</button>
+    </div>
+</div>
+
+<script>
+    function handleFeedbackSubmit() {
+        // 1. ซ่อนฟอร์มเดิม
+        document.getElementById('form-content').style.display = 'none';
+        
+        // 2. แสดงข้อความสำเร็จ
+        const successBox = document.getElementById('success-msg');
+        successBox.style.display = 'block';
+        
+        // 3. ใส่ Animation เล็กน้อยให้ดูแฟ่ดๆ
+        successBox.animate([
+            { opacity: 0, transform: 'scale(0.8)' },
+            { opacity: 1, transform: 'scale(1)' }
+        ], {
+            duration: 500,
+            easing: 'ease-out'
+        });
+
+        // 4. (Optional) เปิด Google Form ในแท็บใหม่ไปพร้อมกัน
+        // window.open('https://forms.google.com/your-form-link-here', '_blank');
+    }
+</script>
+</div>
+    </main>
+
+    <script>
+        // ระบบสลับสไลด์
+        let currentS = 0;
+        const slides = document.querySelectorAll('#futureSlider .item');
+        function nextS() {
+            slides[currentS].classList.remove('active');
+            currentS = (currentS + 1) % slides.length;
+            slides[currentS].classList.add('active');
+        }
+        setInterval(nextS, 5000);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

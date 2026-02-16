@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic | AI Reverse Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* --- ปุ่มเมนูแบบกางออก (Accordion Style) --- */
+        .chapter-container {
+            margin-bottom: 15px;
+            border: 1px solid rgba(46, 204, 113, 0.2); /* ปรับสีขอบให้ซอฟต์ลง */
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+            transition: 0.3s;
+        }
+        .chapter-trigger {
+            width: 100%; padding: 20px 30px; background: transparent; border: none;
+            color: var(--neon-green); font-family: 'Kanit'; font-size: 1.1rem;
+            font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        }
+        .chapter-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+            background: rgba(128, 128, 128, 0.05); color: var(--text-color); padding: 0 30px;
+        }
+
+        /* แก้ไขสีตอนเปิดกล่อง (Active) */
+        .chapter-container.active { 
+            border-color: #2ecc71 !important; /* เปลี่ยนเป็นสีเขียว Emerald */
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2); 
+        }
+        .chapter-container.active .chapter-content { 
+            max-height: 500px; padding: 25px 30px; border-top: 1px solid rgba(128, 128, 128, 0.1); 
+        }
+        .chapter-container.active .chapter-trigger { 
+            background: #2ecc71 !important; /* พื้นหลังหัวข้อตอนเปิด */
+            color: #ffffff !important;      /* ตัวหนังสือสีขาวเพื่อความสุภาพ */
+        }
+        
+        .btn-entry {
+            display: inline-block; margin-top: 15px; padding: 8px 20px;
+            border: 1.5px solid #2ecc71; color: #2ecc71;
+            text-decoration: none; border-radius: 8px; font-size: 0.9rem; transition: 0.3s;
+        }
+        .btn-entry:hover { background: #2ecc71; color: #ffffff !important; }
+
+        /* ปรับสีตัวหนังสือในโหมดสว่างให้ชัดเจน */
+        body.light-mode .chapter-content { color: #1e293b !important; }
+    </style>
+</head>
+<body class="fade">
+
+     <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+    </div>
+</nav>
+    <main class="page-section visible">
+        <header style="text-align:center; margin-bottom:40px;">
+            <h1 class="hero-title font-kanit">AI REVERSE LOGISTICS</h1>
+        </header>
+
+        <div class="content-width" style="max-width: 800px; margin: 0 auto;">
+            <div class="chapter-container">
+                <button class="chapter-trigger" onclick="toggleChapter(this)"><span>OVERVIEW</span><span>▼</span></button>
+                <div class="chapter-content">
+                    <p>ภาพรวมการนำ AI มาใช้ลดขั้นตอนและต้นทุนในระบบโลจิสติกส์ย้อนกลับ</p>
+                    <a href="intro.html" class="btn-entry">อ่านเนื้อหาฉบับเต็ม →</a>
+                </div>
+            </div>
+            <div class="chapter-container">
+                <button class="chapter-trigger" onclick="toggleChapter(this)"><span>RESEARCH</span><span>▼</span></button>
+                <div class="chapter-content">
+                    <p>วิเคราะห์ผลงานวิจัยและการนำ Machine Learning มาใช้พยากรณ์ข้อมูลสินค้าคืน</p>
+                    <a href="literature.html" class="btn-entry">อ่านเนื้อหาฉบับเต็ม →</a>
+                </div>
+            </div>
+            <div class="chapter-container">
+                <button class="chapter-trigger" onclick="toggleChapter(this)"><span>METHODOLOGY</span><span>▼</span></button>
+                <div class="chapter-content">
+                    <p>กระบวนการออกแบบโมเดลและการรวบรวมข้อมูลเพื่อเพิ่มความแม่นยำให้ระบบ</p>
+                    <a href="method.html" class="btn-entry">อ่านเนื้อหาฉบับเต็ม →</a>
+                </div>
+            </div>
+            <div class="chapter-container">
+                <button class="chapter-trigger" onclick="toggleChapter(this)"><span>ANALYSIS</span><span>▼</span></button>
+                <div class="chapter-content">
+                    <p>ผลการทดสอบความแม่นยำ 97% และการลดต้นทุนที่เกิดขึ้นจริง</p>
+                    <a href="result.html" class="btn-entry">อ่านเนื้อหาฉบับเต็ม →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-box content-width font-kanit" style="max-width: 800px; margin: 35px auto;">
+            <h3 class="neon-green" style="margin-bottom:25px;">Comparison Analysis</h3>
+            <div class="tabs-header-modern">
+                <button class="tab-btn-tech active" onclick="openTab(event,'pros')">PROS (ข้อดี)</button>
+                <button class="tab-btn-tech" onclick="openTab(event,'cons')">CONS (ข้อจำกัด)</button>
+            </div>
+            <div id="pros" class="tab-content fade-in">
+                <div class="info-grid">
+                    <div class="info-item"><span>✅</span> ลดต้นทุนการจัดการสินค้าคืนได้ทันทีด้วยระบบ Automation</div>
+                    <div class="info-item"><span>✅</span> ทำงานรวดเร็วและแม่นยำกว่าการใช้แรงงานคน ลด Human Error</div>
+                    <div class="info-item"><span>✅</span> รองรับการขยายตัวของธุรกิจ E-commerce ได้อย่างไร้ขีดจำกัด</div>
+                </div>
+            </div>
+            <div id="cons" class="tab-content fade-in" style="display:none;">
+                <div class="info-grid">
+                    <div class="info-item item-warning"><span>⚠️</span> ต้นทุนเริ่มต้นในการติดตั้งระบบและเซนเซอร์ค่อนข้างสูง</div>
+                    <div class="info-item item-warning"><span>⚠️</span> ต้องมีทีมวิศวกรหรือบุคลากรที่มีทักษะเฉพาะทางด้าน AI ในการดูแล</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-box-tech content-width font-kanit" style="max-width: 800px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">System Diagnostics: Quick Quiz</h3>
+            <p class="quiz-question">AI สามารถเพิ่มความแม่นยำในการคัดแยกได้กี่เปอร์เซ็นต์?</p>
+            <div class="quiz-options-grid">
+                <button class="tech-option" onclick="checkAnswer(true, '97%')">97%</button>
+                <button class="tech-option" onclick="checkAnswer(false, '50%')">50%</button>
+                <button class="tech-option" onclick="checkAnswer(false, '100%')">100%</button>
+            </div>
+            <div id="quiz-feedback" class="feedback-container"></div>
+        </div>
+    </main>
+
+    <footer><p>© 2026 นางสาวธนิสร วสุนทรากาญจน์ | มหาวิทยาลัยสวนดุสิต</p></footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleChapter(btn) {
+            const container = btn.parentElement;
+            document.querySelectorAll('.chapter-container').forEach(el => { if (el !== container) el.classList.remove('active'); });
+            container.classList.toggle('active');
+        }
+        function openTab(evt, tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.style.display='none');
+            document.querySelectorAll('.tab-btn-tech').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).style.display = 'block';
+            evt.currentTarget.classList.add('active');
+        }
+        function checkAnswer(isCorrect, selectedValue) {
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.style.display = 'block';
+            feedback.className = 'feedback-container ' + (isCorrect ? 'correct-fade' : 'wrong-fade');
+
+            if (isCorrect) {
+                feedback.innerHTML = `
+                    <div class="feedback-content">
+                        <h4 style="color: #2ecc71; margin-bottom: 10px;">✅ เก่งมาก! คำตอบที่ถูกต้องคือ 97%</h4>
+                        <p><strong>เหตุผล:</strong> ระบบ Computer Vision และ Machine Learning สามารถจดจำตำหนิสินค้าได้ละเอียดกว่าดวงตามนุษย์ ทำให้ความแม่นยำสูงถึง 97% ลดโอกาสที่สินค้าชำรุดจะหลุดกลับไปวางขายใหม่ได้เกือบทั้งหมด</p>
+                    </div>
+                `;
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.8 }, colors: ['#2ecc71', '#ffffff'] });
+            } else {
+                feedback.innerHTML = `
+                    <div class="feedback-content">
+                        <h4 style="color: #ff4444; margin-bottom: 10px;">❌ ยังไม่ถูกนะ! คำตอบที่ถูกต้องคือ 97%</h4>
+                        <p><strong>คำอธิบาย:</strong> ระบบ AI ปัจจุบันถูกเทรนด้วย Big Data ทำให้มีค่าความแม่นยำมาตรฐานอยู่ที่ 97% เพื่อรักษาสมดุลระหว่าง "ความเร็วในการตรวจสอบ" และ "ความถูกต้อง" ในกระบวนการคัดแยก</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

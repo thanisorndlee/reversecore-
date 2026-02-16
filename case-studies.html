@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Case Studies | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- [ADVANCED INTERACTIVE EFFECTS] --- */
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+
+        /* ตารางสไตล์ Terminal พร้อมแสงสแกน */
+        .cyber-table-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .cyber-table-container::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--neon-green), transparent);
+            opacity: 0.1;
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: transparent;
+        }
+
+        th, td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        th {
+            background: rgba(57, 255, 20, 0.1);
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tr:hover td {
+            background: rgba(57, 255, 20, 0.08);
+            color: var(--neon-green);
+            transform: scale(1.005);
+        }
+
+        /* Timeline ลูกเล่น Pulse */
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(57, 255, 20, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); }
+        }
+
+        .timeline-container { position: relative; padding: 20px 0; }
+        .timeline-item { 
+            border-left: 3px solid var(--neon-green); 
+            padding: 10px 20px 30px 30px; 
+            margin-left: 20px; 
+            position: relative; 
+            transition: 0.4s;
+        }
+
+        .timeline-item:hover { transform: translateX(10px); }
+
+        .timeline-item::before { 
+            content: ''; 
+            position: absolute; 
+            left: -11px; 
+            top: 15px; 
+            width: 18px; 
+            height: 18px; 
+            background: var(--neon-green); 
+            border-radius: 50%; 
+            animation: pulse-neon 2s infinite;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* Map Container ลูกเล่นเรืองแสง */
+        .map-frame { 
+            width: 100%; 
+            height: 450px; 
+            border-radius: 20px; 
+            border: 2px solid rgba(57, 255, 20, 0.3); 
+            margin-top: 20px; 
+            filter: grayscale(1) invert(0.9) brightness(0.8);
+            transition: 0.5s;
+        }
+
+        .map-frame:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
+            filter: grayscale(0.5) invert(0.1) brightness(1);
+        }
+
+        /* --- [NEW: สไลด์ฝั่งขวาแบบจิ๋ว] --- */
+        .case-header-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .mini-slider-container {
+            width: 100%;
+            height: 400px; /* ให้สูงเท่ากับตาราง */
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(57, 255, 20, 0.2);
+            background: #000;
+            margin-top: 45px;
+        }
+
+        .mini-slider-container .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+            transition: 0.5s;
+        }
+
+        .mini-slider-container .slide.active {
+            display: block;
+        }
+
+        .mini-slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        /* โค้ด content สวยๆ ที่คุณส่งมา */
+        .mini-slider-container .content {
+            position: absolute;
+            top: 50%; 
+            left: 30px; 
+            width: 85%;
+            text-align: left;
+            color: #eee;
+            transform: translateY(-50%); 
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .content .title {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .content .des {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Animation แฟ่ด */
+        .slide.active .content {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(-30%); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(-50%); filter: blur(0); }
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar" style="background: var(--nav-bg) !important;">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links" style="background: transparent !important;">
+        <a href="index.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Home</a>
+        <a href="topic.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Topic</a>
+        <a href="innovations.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Innovations</a>
+        <a href="case-studies.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Case Studies</a>
+        <a href="future.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">Future</a>
+        <a href="references.html" style="background: transparent !important; box-shadow: none !important; outline: none !important;">References</a>
+        
+        <button id="mode-toggle" class="cta-btn" 
+                style="background: transparent !important; 
+                       border: 1px solid var(--neon-green) !important; 
+                       box-shadow: none !important; 
+                       outline: none !important;
+                       padding: 8px 15px;
+                       margin-left: 15px;">🌙</button>
+        
+    </div>
+</nav>
+
+    <main class="page-section visible font-kanit" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <header style="text-align: center; margin-bottom: 60px; border-bottom: 1px solid rgba(57, 255, 20, 0.2); padding-bottom: 30px;">
+            <h1 class="neon-green" style="font-size: 2.8rem; margin: 0;">กรณีศึกษา: Tesco & Walmart</h1>
+            <p style="color: #888; margin-top: 10px;">วิเคราะห์การนำระบบเทคโนโลยีสารสนเทศมาใช้ในกระบวนการโลจิสติกส์ระดับโลก</p>
+        </header>
+
+        <div class="case-header-grid">
+            <section>
+                <h2 class="neon-green" style="display: flex; align-items: center; gap: 10px;">
+                    เปรียบเทียบการนำ IT มาใช้ (IT Implementation Analysis)
+                </h2>
+                <div class="cyber-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>หัวข้อวิเคราะห์</th>
+                                <th>Walmart (USA)</th>
+                                <th>Tesco (UK)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ระบบติดตามสินค้า</strong></td>
+                                <td>RFID และระบบ Retail Link เชื่อมโยงซัพพลายเออร์</td>
+                                <td>ระบบตรวจจับน้ำหนักอัจฉริยะบนชั้นวาง (Smart Shelves)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>เทคโนโลยี Reverse Logistics</strong></td>
+                                <td>Automated Returns Centers (ARC) ใช้หุ่นยนต์คัดแยก</td>
+                                <td>Green Logistics: ระบบรับคืนบรรจุภัณฑ์ผ่านตู้ RVM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>การประมวลผลข้อมูล</strong></td>
+                                <td>Big Data วิเคราะห์พฤติกรรมการคืนสินค้าตามฤดูกาล</td>
+                                <td>AI วิเคราะห์ความสดใหม่ของสินค้าเพื่อลดของเสีย (Waste)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="mini-slider-container" id="caseSlider">
+                <div class="slide active">
+                    <img src="slide6.png" alt="Walmart Logistics">
+                    <div class="content">
+                        <div class="title">WALMART ARC</div>
+                        <p class="des">เจาะลึกระบบคัดแยกสินค้าคืนอัตโนมัติด้วยหุ่นยนต์อัจฉริยะในสหรัฐอเมริกา</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="slide7.png" alt="Tesco Tech">
+                    <div class="content">
+                        <div class="title">TESCO SMART AI</div>
+                        <p class="des">การนำ AI มาใช้ตรวจสอบคุณภาพสินค้าคืนและลดปริมาณขยะเหลือทิ้ง</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="slide8.png" alt="Walmart Data">
+                    <div class="content">
+                        <div class="title">WALMART BIG DATA</div>
+                        <p class="des">การวิเคราะห์พฤติกรรมการคืนสินค้าเพื่อวางแผนคลังสินค้าล่วงหน้า</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="slide9.png" alt="Tesco Green">
+                    <div class="content">
+                        <div class="title">TESCO RVM SYSTEM</div>
+                        <p class="des">เทคโนโลยีรับคืนบรรจุภัณฑ์แบบยั่งยืนที่เชื่อมโยงกับระบบสมาชิกดิจิทัล</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <section style="margin-bottom: 80px;">
+            <h2 class="neon-green" style="display: flex; align-items: center; gap: 10px;">
+                Timeline: วิวัฒนาการด้าน IT
+            </h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <strong style="color: var(--neon-green);">2020:</strong> Walmart เริ่มใช้หุ่นยนต์ Autonomous ในคลังสินค้ากว่า 40 แห่ง
+                </div>
+                <div class="timeline-item">
+                    <strong style="color: var(--neon-green);">2023:</strong> Tesco ประกาศใช้ AI ในการคำนวณเส้นทางขนส่งเพื่อลดคาร์บอน 15%
+                </div>
+                <div class="timeline-item">
+                    <strong style="color: var(--neon-green);">2025-2026:</strong> การนำ Generative AI มาใช้จัดการคำถามเรื่องการคืนสินค้าจากลูกค้าโดยอัตโนมัติ
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 60px;">
+            <h2 class="neon-green" style="display: flex; align-items: center; gap: 10px;">
+                Interactive Map: ศูนย์กระจายสินค้าหลัก (Global Hubs)
+            </h2>
+            <p style="font-size: 0.9rem; color: #888;">คลิกเพื่อดูที่ตั้งศูนย์กระจายสินค้าที่เป็นหัวใจสำคัญของกระบวนการขนส่ง</p>
+            
+            <iframe 
+                class="map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15444648.97121703!2d-106.33595205562094!3d38.64775459389947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1swalmart%20distribution%20center!5e0!3m2!1sth!2sth!4v1705668000000" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+            <p style="text-align: right; font-size: 0.7rem; color: #555; margin-top: 10px; font-family: monospace;"></p>
+        </section>
+        
+
+    </main>
+
+    <script>
+        // JS สำหรับสลับสไลด์ในหน้า Case Studies
+        let currentIdx = 0;
+        const caseSlides = document.querySelectorAll('#caseSlider .slide');
+
+        function nextCaseSlide() {
+            caseSlides[currentIdx].classList.remove('active');
+            currentIdx = (currentIdx + 1) % caseSlides.length;
+            caseSlides[currentIdx].classList.add('active');
+        }
+
+        setInterval(nextCaseSlide, 4000); // เปลี่ยนทุก 4 วินาที
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

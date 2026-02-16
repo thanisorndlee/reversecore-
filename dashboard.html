@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Dashboard | REVERSECORE</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0e14;
+            --bg-card: #161b22;
+            --neon-green: #2ecc71;
+            --neon-blue: #00d2ff;
+            --text-white: #ffffff;
+            --text-gray: #8b949e;
+            --border-line: #30363d;
+            --warning-red: #ff4757;
+            --nav-bg: #0b0e14;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Navbar สไตล์ REVERSECORE Serif */
+        nav {
+            background-color: var(--nav-bg);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--neon-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-serif {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-white);
+            text-transform: uppercase;
+        }
+
+        .core-text {
+            font-family: 'Kanit', sans-serif;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+        }
+
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; align-items: center; }
+        nav a { color: var(--text-white); text-decoration: none; font-size: 0.9rem; transition: 0.3s; padding: 5px 10px; }
+        nav a:hover, nav a.active { color: var(--neon-green); }
+
+        .container { max-width: 1300px; margin: 40px auto; padding: 0 30px; }
+
+        /* Filter Section */
+        .filter-section {
+            background: var(--bg-card);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-line);
+            margin-bottom: 30px;
+            display: flex; align-items: center; gap: 20px;
+        }
+
+        select {
+            background: #0b0e14;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-family: 'Kanit';
+            cursor: pointer; outline: none;
+        }
+
+        /* KPI Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-line);
+            position: relative; overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 20%; height: 60%; width: 4px;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .stat-card h3 { font-size: 0.85rem; color: var(--text-gray); text-transform: uppercase; margin: 0; }
+        .stat-card .value { font-size: 3.2rem; font-weight: bold; color: var(--neon-green); margin: 15px 0; display: block; }
+        .stat-card .desc { font-size: 0.85rem; color: var(--text-gray); }
+
+        /* Main Layout */
+        .main-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 35px; }
+        .chart-box, .insight-box {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid var(--border-line);
+        }
+
+        .insight-box h3 { color: var(--neon-green); font-size: 1.4rem; margin-top: 0; border-bottom: 1px solid var(--border-line); padding-bottom: 15px; }
+        .insight-item { margin-bottom: 25px; }
+        .insight-item strong { display: block; font-size: 1.1rem; color: var(--text-white); margin-bottom: 10px; }
+        .insight-item p { font-size: 1rem; line-height: 1.7; color: var(--text-gray); margin: 0; }
+
+        /* Table Wrapper */
+        .table-wrapper { background: var(--bg-card); padding: 35px; border-radius: 24px; border: 1px solid var(--border-line); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { text-align: left; color: var(--neon-green); padding: 18px; border-bottom: 2px solid var(--border-line); text-transform: uppercase; font-size: 0.85rem; }
+        td { padding: 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic.html">Topic</a></li>
+        <li><a href="innovations.html">Innovations</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="future.html">Future</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="header-title">
+        <h1 style="font-size: 2.2rem; margin: 0;">INTELLIGENCE ANALYTICS</h1>
+        <p style="color: var(--text-gray); margin-top: 8px;">วิเคราะห์ประสิทธิภาพการจัดการสินค้าคืนรายเดือน (Pivot Table Analysis)</p>
+    </div>
+
+    <div class="filter-section">
+        <span>เลือกเดือนเพื่อดูบทสรุปเจาะลึก:</span>
+        <select id="monthSelector" onchange="updateDash()">
+            <option value="all">สรุปภาพรวมทั้งหมด (Grand Total)</option>
+            <option value="mar">มีนาคม</option>
+            <option value="apr">เมษายน</option>
+            <option value="may">พฤษภาคม</option>
+            <option value="jun">มิถุนายน</option>
+        </select>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Completed Rate</h3>
+            <span class="value" id="compVal">78.64%</span>
+            <span class="desc" id="compDesc">อัตราความสำเร็จเฉลี่ยสะสม 4 เดือน</span>
+        </div>
+        <div class="stat-card">
+            <h3 style="color: var(--warning-red);">Waiting for Payment</h3>
+            <span class="value" id="waitVal" style="color: var(--warning-red);">8.55%</span>
+            <span class="desc" id="waitDesc">สัดส่วนการค้างชำระในระบบภาพรวม</span>
+        </div>
+        <div class="stat-card">
+            <h3 style="color: var(--neon-blue);">Returned Rate</h3>
+            <span class="value" id="retVal" style="color: var(--neon-blue);">3.89%</span>
+            <span class="desc" id="retDesc">สัดส่วนสินค้าที่ถูกส่งคืนหน้าร้าน</span>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="chart-box">
+            <h3 id="chartTitle" style="margin-top:0; font-weight: 400; color: var(--text-gray);">Monthly Efficiency Trend (%)</h3>
+            <div style="position: relative; height: 350px;">
+                <canvas id="mainChart"></canvas>
+            </div>
+        </div>
+        <div class="insight-box" id="insightArea">
+            <h3>AI DATA INSIGHTS</h3>
+            <div id="insightContent">
+                </div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <h3 style="margin-top:0;">Summary Table (Pivot Analysis)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>เดือน</th>
+                    <th>Completed</th>
+                    <th>Waiting for Payment</th>
+                    <th>Grand Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>มีนาคม</td><td style="color:var(--neon-green);">84.31%</td><td>5.88%</td><td>100%</td></tr>
+                <tr><td>เมษายน</td><td>79.58%</td><td>7.65%</td><td>100%</td></tr>
+                <tr><td>พฤษภาคม</td><td>79.89%</td><td>7.62%</td><td>100%</td></tr>
+                <tr><td>มิถุนายน</td><td>73.65%</td><td style="color:var(--warning-red);">12.40%</td><td>100%</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let myChart;
+    const dashData = {
+        all: { 
+            c: "78.64%", w: "8.55%", r: "3.89%", d: "เฉลี่ยสะสม 4 เดือน", 
+            summary: "ระบบรักษามาตรฐานได้ที่ 78-80% โดยมีเดือนมีนาคมทำผลงานได้ยอดเยี่ยมที่สุด",
+            risk: "พบปัญหาค้างชำระในเดือนมิถุนายนสูงถึง 12.40% แนะนำให้เร่งติดตามผล" 
+        },
+        mar: { 
+            c: "84.31%", w: "5.88%", r: "4.58%", d: "ประสิทธิภาพสูงสุดในไตรมาส", 
+            summary: "เดือนนี้ทำผลงานได้ดีเยี่ยม อัตราสำเร็จสูงสุดถึง 84.31% เป็นเกณฑ์มาตรฐานที่ควรทำตาม",
+            risk: "ความเสี่ยงต่ำ: สัดส่วนการรอชำระเงินอยู่ในเกณฑ์ปกติที่ 5.88% ไม่มีปัญหาคอขวด" 
+        },
+        apr: { 
+            c: "79.58%", w: "7.65%", r: "3.48%", d: "สถานะการทำงานปกติ", 
+            summary: "ประสิทธิภาพคงที่ การดำเนินงานเป็นไปตามแผนที่วางไว้ เริ่มมีการส่งมอบงานมากขึ้น",
+            risk: "ควรเริ่มติดตามกลุ่มลูกค้าที่ค้างชำระเพื่อไม่ให้ยอดสะสมเกินเกณฑ์ในเดือนถัดไป" 
+        },
+        may: { 
+            c: "79.89%", w: "7.62%", r: "4.10%", d: "เดือนที่มีปริมาณงานสูงสุด", 
+            summary: "รองรับปริมาณงานมหาศาลได้ดีโดยประสิทธิภาพไม่ลดลงแม้จะเป็นช่วงที่มีการคัดแยกสินค้าสูงสุด",
+            risk: "ปริมาณงานที่มากอาจส่งผลต่อการติดตามหนี้ แนะนำให้ใช้ระบบ AI ช่วยแจ้งเตือนอัตโนมัติ" 
+        },
+        jun: { 
+            c: "73.65%", w: "12.40%", r: "4.06%", d: "Risk Alert: ค้างชำระพุ่งสูง", 
+            summary: "อัตราสำเร็จลดลงต่ำสุดในไตรมาสที่ 73.65% เนื่องจากการติดขัดในขั้นตอนสุดท้าย",
+            risk: "วิกฤตความเสี่ยง: พบปัญหาค้างชำระสูงสุดถึง 12.40% ต้องเร่งติดตามผลและวิเคราะห์ Gateway" 
+        }
+    };
+
+    function updateDash() {
+        const val = document.getElementById('monthSelector').value;
+        const item = dashData[val];
+
+        document.getElementById('compVal').innerText = item.c;
+        document.getElementById('waitVal').innerText = item.w;
+        document.getElementById('retVal').innerText = item.r;
+        document.getElementById('compDesc').innerText = item.d;
+
+        document.getElementById('insightContent').innerHTML = `
+            <div class="insight-item">
+                <strong>สรุปประสิทธิภาพ:</strong>
+                <p>${item.summary}</p>
+            </div>
+            <div class="insight-item">
+                <strong>การวิเคราะห์ความเสี่ยง:</strong>
+                <p>${item.risk}</p>
+            </div>
+        `;
+
+        document.getElementById('waitVal').style.color = (val === 'jun' || val === 'all') ? 'var(--warning-red)' : 'var(--neon-green)';
+        updateChart(val);
+    }
+
+    function updateChart(val) {
+        if (myChart) myChart.destroy();
+        const ctx = document.getElementById('mainChart').getContext('2d');
+        
+        if (val === 'all') {
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน'],
+                    datasets: [
+                        {
+                            label: 'Completed (%)',
+                            data: [84.31, 79.58, 79.89, 73.65],
+                            borderColor: '#2ecc71',
+                            borderWidth: 4, tension: 0.4, fill: false
+                        },
+                        {
+                            label: 'Returned (%)',
+                            data: [4.58, 3.48, 4.10, 4.06],
+                            borderColor: '#00d2ff',
+                            borderWidth: 3, tension: 0.4, fill: false
+                        }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, ticks: { color: '#8b949e' } }, x: { ticks: { color: '#8b949e' } } }, plugins: { legend: { labels: { color: '#fff' } } } }
+            });
+        } else {
+            const m = dashData[val];
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Completed', 'Waiting Payment', 'Returned'],
+                    datasets: [{
+                        label: 'Status (%)',
+                        data: [parseFloat(m.c), parseFloat(m.w), parseFloat(m.r)],
+                        backgroundColor: ['#2ecc71', '#ff4757', '#00d2ff'],
+                        borderRadius: 10
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { max: 100, ticks: { color: '#8b949e' } }, x: { ticks: { color: '#8b949e' } } } }
+            });
+        }
+    }
+
+    window.onload = updateDash;
+</script>
+</body>
+</html>

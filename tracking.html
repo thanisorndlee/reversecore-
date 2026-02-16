@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracking | REVERSECORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="navbar">
+    <div class="logo logo-serif">REVERSE<span class="core-text">CORE</span></div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="topic.html">Topic</a>
+        <a href="innovations.html">Innovations</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="future.html">Future</a>
+        <a href="references.html">References</a>
+        <a href="tracking.html" style="color:var(--neon-green)">Tracking</a>
+        
+        <button id="mode-toggle" class="cta-btn">🌙</button>
+    </div>
+</nav>
+
+<script src="script.js"></script>
+</body>
+<div id="dataModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>ข้อมูลการติดตามพัสดุ</h2>
+      <span class="close" onclick="closeTable()">×</span>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Tracking</th>
+            <th>ผู้ส่ง</th>
+            <th>ผู้รับ</th>
+            <th>จังหวัด</th>
+            <th>สถานะ</th>
+            <th>ระยะทางคงเหลือ (km)</th>
+            <th>เวลา</th>
+          </tr>
+        </thead>
+        <tbody id="trackingTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<meta charset="UTF-8">
+<title>Real-time Tracking | AI Reverse Logistics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+:root{
+    --neon-green:#39FF14;
+    --dark-bg:#0b0f14;
+    --glass-bg:rgba(255,255,255,0.06);
+    --glass-border:rgba(255,255,255,0.12);
+}
+body{
+    margin:0;
+    background:var(--dark-bg);
+    font-family:'Kanit',sans-serif;
+    color:#fff;
+}
+.glass{
+    background:var(--glass-bg);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+    box-shadow:0 8px 32px rgba(0,0,0,.45);
+}
+.page-title{
+    text-align:center;
+    padding:40px 20px 20px;
+}
+.page-title span{color:var(--neon-green);}
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+.status-bar{
+    display:flex;
+    gap:20px;
+    margin-bottom:25px;
+}
+.status{
+    flex:1;
+    padding:25px;
+    text-align:center;
+}
+.status h2{
+    margin:0;
+    font-size:38px;
+    color:var(--neon-green);
+}
+#map{
+    height:520px;
+    border-radius:14px;
+}
+.actions{
+    text-align:right;
+    margin-bottom:12px;
+}
+button{
+    background:transparent;
+    border:1px solid var(--neon-green);
+    color:var(--neon-green);
+    padding:8px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    font-family:'Kanit';
+}
+button:hover{
+    background:var(--neon-green);
+    color:#000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-title">
+    <h1><span>Real-time</span> Parcel Tracking</h1>
+    <p style="opacity:.8">AI-powered Reverse Logistics Monitoring</p>
+</div>
+
+<div class="container">
+
+<div class="glass status-bar">
+    <div class="status">
+        <h2 id="countDelivering">0</h2>
+        <span>กำลังขนส่ง</span>
+    </div>
+    <div class="status">
+        <h2 id="countDelivered">0</h2>
+        <span>ถึงแล้ว</span>
+    </div>
+</div>
+
+<div class="glass" style="padding:20px;">
+    <div class="actions">
+        <button onclick="loadData()">Refresh</button>
+        <button onclick="openTable()">ดูข้อมูลทั้งหมด</button>
+    </div>
+    <div id="map"></div>
+</div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// ================= MAP =================
+const map = L.map('map').setView([13.7367,100.5231],6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+const layer = L.layerGroup().addTo(map);
+
+// ================= ICON =================
+const iconDelivering = new L.Icon({
+    iconUrl:'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+    iconSize:[32,32],
+    iconAnchor:[16,32]
+});
+const iconDelivered = new L.Icon({
+    iconUrl:'https://cdn-icons-png.flaticon.com/512/190/190411.png',
+    iconSize:[32,32],
+    iconAnchor:[16,32]
+});
+
+// ================= DATA =================
+const data = [
+ {id:"TH001",lat:13.7563,lon:100.5018,name:"สมชาย",status:"กำลังขนส่ง"},
+ {id:"TH002",lat:18.7883,lon:98.9853,name:"กฤษฎา",status:"ถึงแล้ว"},
+ {id:"TH003",lat:16.4322,lon:102.8236,name:"กิตติยา",status:"กำลังขนส่ง"},
+ {id:"TH004",lat:7.8804,lon:98.3923,name:"พรพิมล",status:"กำลังขนส่ง"},
+ {id:"TH005",lat:13.3611,lon:100.9847,name:"วิชัย",status:"ถึงแล้ว"},
+ {id:"TH006",lat:14.9799,lon:102.0978,name:"สุดา",status:"กำลังขนส่ง"},
+ {id:"TH007",lat:7.0084,lon:100.4747,name:"กิตติยา",status:"กำลังขนส่ง"},
+ {id:"TH008",lat:16.8211,lon:100.2659,name:"มานี",status:"ถึงแล้ว"},
+ {id:"TH009",lat:9.1396,lon:99.3217,name:"สมศักดิ์",status:"กำลังขนส่ง"},
+ {id:"TH010",lat:15.7048,lon:100.1372,name:"จันจิรา",status:"กำลังขนส่ง"},
+ {id:"TH011",lat:14.5286,lon:101.3431,name:"อนันต์",status:"กำลังขนส่ง"},
+ {id:"TH012",lat:13.1146,lon:101.6432,name:"ปราณี",status:"ถึงแล้ว"},
+ {id:"TH013",lat:16.2443,lon:103.2502,name:"สมพร",status:"กำลังขนส่ง"},
+ {id:"TH014",lat:8.0844,lon:98.9071,name:"นารี",status:"กำลังขนส่ง"},
+ {id:"TH015",lat:17.4082,lon:99.8821,name:"ประสิทธิ์",status:"ถึงแล้ว"}
+];
+
+// ================= STATE =================
+let aiProcessed = false;
+
+// ================= RENDER =================
+function renderMap(){
+    layer.clearLayers();
+    let delivering = 0;
+    let delivered = 0;
+
+    data.forEach(p=>{
+        const icon = p.status==="ถึงแล้ว" ? iconDelivered : iconDelivering;
+        p.status==="ถึงแล้ว" ? delivered++ : delivering++;
+
+        L.marker([p.lat,p.lon],{icon})
+            .bindPopup(`<b>${p.id}</b><br>ผู้รับ: ${p.name}<br>สถานะ: ${p.status}`)
+            .addTo(layer);
+    });
+
+    document.getElementById("countDelivering").innerText = delivering;
+    document.getElementById("countDelivered").innerText = delivered;
+}
+
+// ================= REFRESH (AI) =================
+function loadData(){
+    const btn = document.querySelector("button");
+    btn.disabled = true;
+    btn.innerText = "AI กำลังประมวลผล...";
+
+    layer.clearLayers();
+    document.getElementById("countDelivering").innerText = "-";
+    document.getElementById("countDelivered").innerText = "-";
+
+    setTimeout(()=>{
+
+        if(!aiProcessed){
+            let currentDelivered = data.filter(d=>d.status==="ถึงแล้ว").length;
+            const targetDelivered = 6;
+
+            data.forEach(p=>{
+                if(p.status==="กำลังขนส่ง" && currentDelivered < targetDelivered){
+                    p.status = "ถึงแล้ว";
+                    currentDelivered++;
+                }
+            });
+
+            aiProcessed = true;
+        }
+
+        renderMap();
+        btn.disabled = false;
+        btn.innerText = "🔄 Refresh";
+
+    },4000);
+}
+
+// ================= INIT =================
+renderMap();
+</script>
+<script>
+/* ================= TABLE DATA ================= */
+const tableData = [
+ {t:"TH001",s:"ธนิสร",r:"สมชาย",p:"เชียงใหม่",st:"กำลังขนส่ง",d:51.27,time:"27/01/2026"},
+ {t:"TH002",s:"ธนิสร",r:"กฤษฎา",p:"อยุธยา",st:"ถึงแล้ว",d:152.80,time:"27/01/2026"},
+ {t:"TH003",s:"ธนิสร",r:"กิตติยา",p:"สุราษฎร์ธานี",st:"กำลังขนส่ง",d:106.76,time:"27/01/2026"},
+ {t:"TH004",s:"ธนิสร",r:"พรพิมล",p:"กรุงเทพมหานคร",st:"กำลังขนส่ง",d:37.98,time:"27/01/2026"},
+ {t:"TH005",s:"ธนิสร",r:"วิชัย",p:"ชลบุรี",st:"ถึงแล้ว",d:82.83,time:"27/01/2026"},
+ {t:"TH006",s:"ธนิสร",r:"สุดา",p:"พังงา",st:"กำลังขนส่ง",d:296.57,time:"27/01/2026"},
+ {t:"TH007",s:"ธนิสร",r:"กิตติยา",p:"เชียงราย",st:"กำลังขนส่ง",d:160.41,time:"27/01/2026"},
+ {t:"TH008",s:"ธนิสร",r:"มานี",p:"ระยอง",st:"ถึงแล้ว",d:414.65,time:"27/01/2026"},
+ {t:"TH009",s:"ธนิสร",r:"สมศักดิ์",p:"สงขลา",st:"กำลังขนส่ง",d:105.69,time:"27/01/2026"},
+ {t:"TH010",s:"ธนิสร",r:"จันจิรา",p:"พิษณุโลก",st:"กำลังขนส่ง",d:105.75,time:"27/01/2026"},
+ {t:"TH011",s:"ธนิสร",r:"อนันต์",p:"นครราชสีมา",st:"กำลังขนส่ง",d:95.41,time:"27/01/2026"},
+ {t:"TH012",s:"ธนิสร",r:"ปราณี",p:"ภูเก็ต",st:"ถึงแล้ว",d:62.74,time:"27/01/2026"},
+ {t:"TH013",s:"ธนิสร",r:"สมพร",p:"นครสวรรค์",st:"กำลังขนส่ง",d:136.84,time:"27/01/2026"},
+ {t:"TH014",s:"ธนิสร",r:"นารี",p:"ขอนแก่น",st:"กำลังขนส่ง",d:61.05,time:"27/01/2026"},
+ {t:"TH015",s:"ธนิสร",r:"ประสิทธิ์",p:"อุดรธานี",st:"ถึงแล้ว",d:180.37,time:"27/01/2026"}
+];
+
+/* ================= OPEN / CLOSE TABLE ================= */
+function openTable(){
+    const tbody = document.getElementById("trackingTable");
+    tbody.innerHTML = "";
+
+    tableData.forEach(i=>{
+        tbody.innerHTML += `
+        <tr>
+            <td>${i.t}</td>
+            <td>${i.s}</td>
+            <td>${i.r}</td>
+            <td>${i.p}</td>
+            <td>${i.st}</td>
+            <td>${i.d}</td>
+            <td>${i.time}</td>
+        </tr>`;
+    });
+
+    document.getElementById("dataModal").style.display = "block";
+}
+
+function closeTable(){
+    document.getElementById("dataModal").style.display = "none";
+}
+</script>
+</body>
+</html> 
